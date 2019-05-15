@@ -7,42 +7,42 @@ their captions. The app relies on Elasticsearch for the indexing and searching.
 The app has no admin, no models and only provides one restful endpoint for
 making queries.
 
-Quick start
+To use
 -----------
 0a. Install Elasticsearch
 
 0b. pip install django-ytindex
 
-1. Add "ytindex" to your INSTALLED_APPS setting like this::
+1. Add "ytindex" to your INSTALLED_APPS::
 
     INSTALLED_APPS = [
         ...
         'ytindex',
     ]
 
-2. Include the ytindex URLconf in your project urls.py like this::
+2. Include the ytindex URLconf in your project urls.py::
 
     path('yti/', include('ytindex.urls')),
 
 3. Define the channel id of the Youtube channel you want to index and the
-   Elasticsearch config you want to use.
+   Elasticsearch config you want to use::
 
-.. codeblock:: python
+     YTCI_SETTINGS = {
+         'default':'jrei',
+         'jrei': {
+             'channel_id': 'UCzQUP1qoWDoEbmsQxvdjxgQ',
+             'elastic': {
+                 'index': 'jre-index',
+                 'dtype': 'jrei-episode',
+                 'es_host': 'localhost:9200'
+             }
+         }
+     }
 
-   YTCI_SETTINGS = {
-       'default':'jrei',
-       'jrei': {
-           'channel_id': 'UCzQUP1qoWDoEbmsQxvdjxgQ',
-           'elastic': {
-               'index': 'jre-index',
-               'dtype': 'jrei-episode',
-               'es_host': 'localhost:9200'
-           }
-       }
-   }
+4. Run::
 
-4. Run
-    ./manage index_latest [index name eg. jrei]
+      ./manage index_latest [index name eg. jrei]
+
    to index the latest videos on the channel
 
-5. Visit http://127.0.0.1:8000/yti/ to search the index.
+5. Run the dev server and visit http://127.0.0.1:8000/yti/jrei/[query] to search the index.
