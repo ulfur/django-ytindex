@@ -1,6 +1,5 @@
-=====
-ytindex
-=====
+
+# ytindex
 
 ytindex is a Django app for managing a searchable index of Youtube videos and
 their captions. The app relies on Elasticsearch for the indexing and searching.
@@ -9,9 +8,9 @@ making queries.
 
 To use
 -----------
-0a. Install Elasticsearch
+Install Elasticsearch
 
-0b. pip install django-ytindex
+pip install django-ytindex
 
 1. Add "ytindex" to your INSTALLED_APPS::
 
@@ -45,4 +44,4 @@ To use
 
    to index the latest videos on the channel
 
-5. Run the dev server and visit http://127.0.0.1:8000/yti/jrei/[query] to search the index.
+5. Run the dev server and visit http://127.0.0.1:8000/yti/jrei/elk to search the index.
