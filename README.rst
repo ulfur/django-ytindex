@@ -27,7 +27,8 @@ Quick start
 3. Define the channel id of the Youtube channel you want to index and the
    Elasticsearch config you want to use.
 
-::
+.. codeblock:: python
+
    YTCI_SETTINGS = {
        'default':'jrei',
        'jrei': {
