@@ -45,4 +45,4 @@ Quick start
     ./manage index_latest [index name eg. jrei]
    to index the latest videos on the channel
 
-5. Visit http://127.0.0.1:8000/yti/search/ to search the index.
+5. Visit http://127.0.0.1:8000/yti/ to search the index.
