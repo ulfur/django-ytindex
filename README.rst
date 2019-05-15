@@ -11,9 +11,7 @@ To use
 -----------
 0a. Install Elasticsearch
 
-0b. ::
-
-      pip install django-ytindex
+0b. pip install django-ytindex
 
 1. Add "ytindex" to your INSTALLED_APPS::
 
