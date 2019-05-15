@@ -9,6 +9,9 @@ making queries.
 
 Quick start
 -----------
+0a. Install Elasticsearch
+
+0b. pip install django-ytindex
 
 1. Add "ytindex" to your INSTALLED_APPS setting like this::
 
@@ -24,6 +27,7 @@ Quick start
 3. Define the channel id of the Youtube channel you want to index and the
    Elasticsearch config you want to use.
 
+::
    YTCI_SETTINGS = {
        'default':'jrei',
        'jrei': {
