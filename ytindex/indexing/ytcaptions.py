@@ -26,7 +26,7 @@ class YTCaptionIndex(ESIndex):
           }
         }
 
-    def _search(self, query, query_type='match_phrase', size=20):
+    def _search(self, query, query_type='match_phrase', size=20, from_=0):
         # This seems like a reasonable query for right now.
         # TODO: make better (Google has been working on theirs since 1994)
         q = { 'query': { 'bool': {
@@ -39,14 +39,14 @@ class YTCaptionIndex(ESIndex):
                         }},
                         {'match':{'description': query}}
                         ]}}}
-        r = self._es.search(index=self.Meta.index_name, body=q, size=size)
+        r = self._es.search(index=self.Meta.index_name, body=q, size=size, from_=from_)
         return r
 
     def get(self, id):
         return self._es.get(id=self.Meta.doc_id_tmpl%{'id':id}, index=self.Meta.index_name)
 
-    def match(self, query, size=20):
-        return self._search(query, query_type='match', size=size)
+    def match(self, query, size=20, from_=0):
+        return self._search(query, query_type='match', size=size, from_=from_)
 
-    def match_phrase(self, query, size=20):
-        return self._search(query, query_type='match_phrase', size=size)
+    def match_phrase(self, query, size=20, from_=0):
+        return self._search(query, query_type='match_phrase', size=size, from_=from_)
