@@ -10,7 +10,7 @@ setup(
     name='django-ytindex',
     version='0.1.3',
     packages=find_packages(),
-    install_requires=['pytube','elasticsearch'],
+    install_requires=['pytube','elasticsearch','google-api-python-client'],
     include_package_data=True,
     license='BSD License',
     description='Django app for managing a searchable index of Youtube videos',
