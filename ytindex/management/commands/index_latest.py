@@ -15,13 +15,15 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        def index_video(ytid, idx):
-            downloader = YTCaptionDownloader(ytid)
+        def index_video(ytid, idx, ls=12):
+            downloader = YTCaptionDownloader(ytid, line_size=ls)
             idx.index_object(downloader.as_dict())
 
         for index in options['index']:
-            idx = Index(**settings.YTCI_SETTINGS[index]['elastic'])
-            channel_id = settings.YTCI_SETTINGS[index]['channel_id']
+            idx_settings = settings.YTCI_SETTINGS[index]
+            idx = Index(**idx_settings['elastic'])
+            channel_id = idx_settings['channel_id']
+
             r = request.urlopen('https://www.youtube.com/feeds/videos.xml?channel_id=%s'%channel_id)
             if r.status == 200:
                 et = ElementTree.fromstring(r.read())
@@ -30,8 +32,7 @@ class Command(BaseCommand):
                 video_ids = [id.text.split(':')[-1] for id in et.findall( xpath, namespaces=ns )]
                 for video_id in video_ids:
                     try:
-                        print('Indexing::', video_id)
-                        index_video(video_id, idx)
+                        index_video(video_id, idx, ls=idx_settings.get('line_size', 12))
                     except YTCaptionNotFoundException as e:
                         print(e)
                     except Exception as e:

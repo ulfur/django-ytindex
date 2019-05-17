@@ -16,20 +16,21 @@ class Command(BaseCommand):
         parser.add_argument('playlist_ids', nargs='+', type=str)
 
     def handle(self, *args, **options):
-
         index = options['index']
+        idx_settings = settings.YTCI_SETTINGS[index]
 
-        def index_video(ytid, idx):
-            downloader = YTCaptionDownloader(ytid)
+        def index_video(ytid, idx, ls=12):
+            downloader = YTCaptionDownloader(ytid, line_size=ls)
             idx.index_object(downloader.as_dict())
 
         for playlist_id in options['playlist_ids']:
-            idx = Index(**settings.YTCI_SETTINGS[index]['elastic'])
+            idx = Index(**idx_settings['elastic'])
             y = Youtube( settings.YTCI_SETTINGS['api_key'] )
             for video_id in y.listplaylist(playlist_id):
                 try:
-                    print('Indexing::', video_id)
-                    index_video(video_id, idx)
+                    ls = idx_settings.get('line_size', 12)
+                    print('Indexing::', video_id, 'line size %i'%ls)
+                    index_video(video_id, idx, ls=ls)
                 except YTCaptionNotFoundException as e:
                     print(e)
                 except Exception as e:

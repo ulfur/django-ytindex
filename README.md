@@ -24,19 +24,20 @@ To use
     ]
     ```
 
-2. Include the ytindex URLconf in your project urls.py::
+2. Include the ytindex URLconf in your project urls.py
 
     ```
     path('yti/', include('ytindex.urls')),
     ```
 
 3. Define the channel id of the Youtube channel you want to index and the
-   Elasticsearch config you want to use::
+   Elasticsearch config you want to use
    ```
      YTCI_SETTINGS = {
-         'default':'jrei',
+         'api_key':'AIzaSyCrGGcnVjY8AV7XWSHEIco3TDw4qobkh1w',
          'jrei': {
              'channel_id': 'UCzQUP1qoWDoEbmsQxvdjxgQ',
+             'line_size': 12,
              'elastic': {
                  'index': 'jre-index',
                  'dtype': 'jrei-episode',
@@ -45,6 +46,7 @@ To use
          }
      }
     ```
+    
 4. Run
 
     ```
