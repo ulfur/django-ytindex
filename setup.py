@@ -8,7 +8,7 @@ os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-ytindex',
-    version='0.1.6',
+    version='0.1.61',
     packages=find_packages(),
     install_requires=['pytube','elasticsearch','google-api-python-client'],
     include_package_data=True,
