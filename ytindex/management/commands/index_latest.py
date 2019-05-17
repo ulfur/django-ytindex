@@ -32,6 +32,7 @@ class Command(BaseCommand):
                 video_ids = [id.text.split(':')[-1] for id in et.findall( xpath, namespaces=ns )]
                 for video_id in video_ids:
                     try:
+                        print('Indexing::', video_id)
                         index_video(video_id, idx, ls=idx_settings.get('line_size', 12))
                     except YTCaptionNotFoundException as e:
                         print(e)

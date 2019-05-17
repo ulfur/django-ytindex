@@ -28,9 +28,8 @@ class Command(BaseCommand):
             y = Youtube( settings.YTCI_SETTINGS['api_key'] )
             for video_id in y.listplaylist(playlist_id):
                 try:
-                    ls = idx_settings.get('line_size', 12)
-                    print('Indexing::', video_id, 'line size %i'%ls)
-                    index_video(video_id, idx, ls=ls)
+                    print('Indexing::', video_id)
+                    index_video(video_id, idx, ls=idx_settings.get('line_size', 12))
                 except YTCaptionNotFoundException as e:
                     print(e)
                 except Exception as e:

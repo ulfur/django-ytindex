@@ -15,7 +15,7 @@ To use
   pip install django-ytindex django
   ```
 
-1. Add "ytindex" to your INSTALLED_APPS::
+1. Add "ytindex" to your INSTALLED_APPS
 
     ```
     INSTALLED_APPS = [
@@ -46,12 +46,13 @@ To use
          }
      }
     ```
-    
+
 4. Run
 
     ```
       ./manage index_latest [index name eg. jrei]
     ```
+
    to index the latest videos on the channel. (Put this in crontab)
 
 5. Run the dev server and visit http://127.0.0.1:8000/yti/jrei/elk to search the index.

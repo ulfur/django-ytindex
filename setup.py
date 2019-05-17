@@ -15,6 +15,7 @@ setup(
     license='BSD License',
     description='Django app for managing a searchable index of Youtube videos',
     long_description=README,
+    long_description_content_type='text/markdown',
     url='https://www.example.com/',
     author='ulfurk',
     author_email='ulfurk@ulfurk.com',
