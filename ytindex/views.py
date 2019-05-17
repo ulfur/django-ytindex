@@ -17,3 +17,7 @@ def search(request, index, query):
     results = [ clean_hit(hit) for hit in r['hits']['hits'] ]
     ctx = {'results':results, 'query': query, 'index':index}
     return JsonResponse(ctx)
+
+def count(request, index):
+    idx = Index(**settings.YTCI_SETTINGS[index]['elastic'])
+    return JsonResponse({'index': index, 'count': idx.count()['count']})

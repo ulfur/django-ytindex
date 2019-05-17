@@ -46,3 +46,7 @@ class ESIndex:
             } for ob in oblist
         ]
         helpers.bulk(self._es, bulk_list)
+
+    @_index_exists
+    def count(self):
+        return self._es.count(index=self.Meta.index_name)
